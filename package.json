@@ -50,9 +50,12 @@
     "normalize.css": "^4.1.1",
     "postcss-loader": "1.0.0",
     "postcss-load-config": "1.0.0",
+      "angular2-jwt":"0.1.23",
     "rxjs": "5.0.0-beta.12",
    "tether": "^1.2.4",
-    "zone.js": "~0.7.1"
+    "zone.js": "~0.7.1",
+    "angular-jwt":"0.1.9"
+ 
   },
   "devDependencies": {
     "angular2-router-loader": "^0.3.4",

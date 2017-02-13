@@ -1,7 +1,7 @@
-import { NgModule, ApplicationRef } from '@angular/core';
+import { NgModule, ApplicationRef} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule} from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 
@@ -18,12 +18,16 @@ import { AppState, InternalStateType } from './app.service';
 import { GlobalState } from './global.state';
 import { NgaModule } from './theme/nga.module';
 import { PagesModule } from './pages/pages.module';
+import { HttpClient } from './http.client';
+import { AuthModule } from './_services/auth.module';
 
 // Application wide providers
 const APP_PROVIDERS = [
   AppState,
   GlobalState,
-  AuthGuard
+  AuthGuard,
+  HttpClient,
+  AuthModule
 ];
 
 type StoreType = {
@@ -52,8 +56,7 @@ type StoreType = {
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
-    APP_PROVIDERS
-  ]
+    APP_PROVIDERS  ]
 })
 
 export class AppModule {

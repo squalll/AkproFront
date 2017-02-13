@@ -33,7 +33,7 @@ export class Login implements OnInit  {
 
   public ngOnInit() {
         // reset login status
-        this.authenticationService.logout();
+       // this.authenticationService.logout();
 
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -50,7 +50,7 @@ export class Login implements OnInit  {
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {
-                   console.log("asd");
+                   console.log(error);
                     this.submitted = false;
                 });
     }
