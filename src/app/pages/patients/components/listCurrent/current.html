@@ -1,0 +1,22 @@
+<p-dataTable [value]="patients" scrollHeight="400px" [scrollable]="true" >
+    <p-column field="nom" header="Nom"></p-column>
+    <p-column field="prenom" header="Prenom"></p-column>
+    <p-column  [style]="{'width':'130px'}">
+        <template pTemplate="header">
+            <button type="button" pButton (click)="getPatients()" icon="fa-refresh"></button>
+        </template>
+        <template let-patient="rowData" pTemplate="body"  *ngIf="cdEtatInput == 'ACT'" >
+             <div style="text-align: center;">        
+                 <button type="button" class="btn btn-primary" (click)="updatePatient(patient,'INA')">Désactiver</button>
+            </div>
+        </template>
+         <template let-patient="rowData" pTemplate="body" *ngIf="cdEtatInput == 'INA'">
+             <div style="text-align: center;">                           
+                    <button type="button" class="btn btn-primary" (click)="updatePatient(patient,'ACT')" >Activer</button>
+             </div>
+        </template>
+    </p-column>
+   
+</p-dataTable>
+
+  

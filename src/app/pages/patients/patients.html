@@ -1,8 +1,19 @@
-<div class="row">
-  <ba-card class="col-md-12"
-                     title="Ajouter un patient" baCardClass="traffic-panel medium-card">
-          <creation-patient></creation-patient>      
-  </ba-card>
+<div class="widgets">
+  <div class="row">
+    <ba-card class="col-md-12"
+                      title="Ajouter un patient" baCardClass="traffic-panel">
+            <creation-patient #creation  (refreshParent)="refreshOnCreate($event)"></creation-patient>      
+    </ba-card>
+  </div>
+  <div class="row">
+    <ba-card class="col-lg-6 col-md-12"
+                      title="Patients Actifs" baCardClass="traffic-panel">
+            <current-patient #currentActif cdEtatInput="ACT"  (refreshParent)="refresh($event)"></current-patient>      
+    </ba-card>
 
-
+    <ba-card class="col-lg-6 col-md-12"
+                      title="Anciens Patients" baCardClass="traffic-panel">
+            <current-patient #currentInactif cdEtatInput="INA" (refreshParent)="refresh($event)"></current-patient>      
+    </ba-card>
+  </div>
 </div>

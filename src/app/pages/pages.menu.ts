@@ -19,7 +19,20 @@ export const PAGES_MENU = [
         data: { // custom menu declaration
           menu: {
             title: 'Patients', // menu title
-            icon: 'ion-android-home', // menu icon
+            icon: 'ion-person-stalker', // menu icon
+            pathMatch: 'prefix', // use it if item children not displayed in menu
+            selected: false,
+            expanded: false,
+            order: 0
+          }
+        }
+      },
+      {
+        path: 'calendar',  // path for our page
+        data: { // custom menu declaration
+          menu: {
+            title: 'Calendrier', // menu title
+            icon: 'ion-calendar', // menu icon
             pathMatch: 'prefix', // use it if item children not displayed in menu
             selected: false,
             expanded: false,

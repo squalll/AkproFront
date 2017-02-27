@@ -16,7 +16,7 @@ import { MENU } from './app.menu';
 @Component({
   selector: 'app',
   encapsulation: ViewEncapsulation.None,
-  styles: [require('normalize.css'), require('./app.scss')],
+  styles: [require('normalize.css'), require('./app.scss'), require('../../node_modules/primeng/resources/themes/omega/theme.css'), require('../../node_modules/primeng/resources/primeng.min.css')],
   template: `
     <main [ngClass]="{'menu-collapsed': isMenuCollapsed}" baThemeRun>
       <div class="additional-bg"></div>

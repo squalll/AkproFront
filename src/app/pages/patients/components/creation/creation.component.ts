@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component,Output,EventEmitter} from '@angular/core';
 import {FormGroup,FormBuilder} from '@angular/forms';
 import {  PatientsService } from '../../../../_services/index';
 
@@ -12,6 +12,8 @@ export class CreationPatient {
 
   public patientToCreate:Patient = new Patient(null,null);
   
+  @Output() refreshParent= new EventEmitter();
+
   constructor( private patientsService: PatientsService) {
   }
 
@@ -22,7 +24,7 @@ export class CreationPatient {
          this.patientsService.create(this.patientToCreate.prenom, this.patientToCreate.nom)   
          .subscribe(
                 data => {
-                   console.log(data);
+                  this.refreshParent.emit();
                 },
                 error => {
                    console.log(error);
