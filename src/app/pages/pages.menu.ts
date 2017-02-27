@@ -39,6 +39,19 @@ export const PAGES_MENU = [
             order: 0
           }
         }
+      },
+      {
+        path: 'config',  // path for our page
+        data: { // custom menu declaration
+          menu: {
+            title: 'Configuration', // menu title
+            icon: 'ion-gear-a', // menu icon
+            pathMatch: 'prefix', // use it if item children not displayed in menu
+            selected: false,
+            expanded: false,
+            order: 0
+          }
+        }
       }
     /*  {
         path: 'editors',

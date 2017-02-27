@@ -1,0 +1,107 @@
+<form (ngSubmit)="onSubmit()">
+<div class="row">
+  <div class="col-sm-6">
+        <div class="form-group">
+            <label for="nom">Nom</label>
+            <input  [(ngModel)]="userToCreate.nom" name="nom" type="text" class="form-control" id="nom" placeholder="Nom">
+        </div>
+   </div>
+   <div class="col-sm-6">
+        <div class="form-group">
+            <label for="prenom">Prénom</label>
+            <input  [(ngModel)]="userToCreate.prenom"  name="prenom" type="text" class="form-control" id="prenom" placeholder="Prénom">
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+        <div class="form-group">
+            <label for="adresse">Adresse</label>
+            <input  [(ngModel)]="userToCreate.adresse" name="adresse" type="text" class="form-control" id="adresse" placeholder="Adresse">
+        </div>
+   </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-6">
+        <div class="form-group">
+            <label for="cdPostal">Code Postal</label>
+            <input  [(ngModel)]="userToCreate.cdPostal" name="cdPostal" type="text" class="form-control" id="cdPostal" placeholder="Code Postal">
+        </div>
+   </div>
+   <div class="col-sm-6">
+        <div class="form-group">
+            <label for="ville">Ville</label>
+            <input  [(ngModel)]="userToCreate.ville"  name="ville" type="text" class="form-control" id="ville" placeholder="Ville">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-4">
+        <div class="form-group has-success has-feedback">
+            <label class="control-label" for="inputGroupSuccess1">Input group with success</label>
+            <div class="input-group">
+                <span class="input-group-addon addon-left">@</span>
+                    <input  [(ngModel)]="userToCreate.mail" type="text" name="mail"  class="form-control" id="mail" aria-describedby="inputGroupSuccess1Status">
+            </div>
+            <i class="ion-checkmark-circled form-control-feedback" aria-hidden="true"></i>
+            <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+        </div>
+   </div>
+
+   <div class="col-sm-4">
+        <div class="form-group">
+            <label for="tel">Téléphone</label>
+            <input  [(ngModel)]="userToCreate.tel"  name="tel" type="text" class="form-control" id="tel" placeholder="Téléphone">
+        </div>
+    </div>
+   <div class="col-sm-4">
+        <div class="form-group">
+            <label for="siret">Siret</label>
+            <input  [(ngModel)]="userToCreate.siret"  name="siret" type="text" class="form-control" id="siret" placeholder="Siret">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-6">
+        <div class="form-group">
+            <label for="login">Login</label>
+            <input  [(ngModel)]="userToCreate.login" name="login" type="text" class="form-control" id="login" placeholder="Login">
+        </div>
+   </div>
+   <div class="col-sm-6">
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input  [(ngModel)]="userToCreate.password"  name="password" type="password" class="form-control" id="password" placeholder="Password">
+        </div>
+    </div>
+</div>
+<div class="row">
+ <div class="col-sm-6">
+        <div class="form-group">
+            <label for="statut">Statut</label>
+              <select [(ngModel)]="userToCreate.statut" name="statut"   id="statut" placeholder="Statut" class="form-control" >
+                <option value="COLAB" selected>Colaboratrice</option>
+                <option value="REMP">remplaçante</option>
+            </select>
+        </div>
+    </div>
+ <div class="col-sm-6">
+        <div class="form-group">
+            <label for="admin">Administrator</label>
+              <select [(ngModel)]="userToCreate.admin" name="admin"   id="admin" placeholder="Administrator" class="form-control" >
+                <option value="true" selected>true</option>
+                <option value="false">false</option>
+            </select>
+        </div>
+    </div>
+</div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary">Créer</button>
+  </div>
+</form>
+
