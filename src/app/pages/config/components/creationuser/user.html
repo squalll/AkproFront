@@ -1,15 +1,15 @@
-<form (ngSubmit)="onSubmit()">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
 <div class="row">
   <div class="col-sm-6">
-        <div class="form-group">
+        <div class="form-group"  [ngClass]="{'has-error': !nom.valid, 'has-success': nom.valid}">
             <label for="nom">Nom</label>
-            <input  [(ngModel)]="userToCreate.nom" name="nom" type="text" class="form-control" id="nom" placeholder="Nom">
+            <input formControlName="nom" name="nom" type="text" class="form-control" id="nom" placeholder="Nom">
         </div>
    </div>
    <div class="col-sm-6">
-        <div class="form-group">
+        <div class="form-group"  [ngClass]="{'has-error': !prenom.valid, 'has-success':prenom.valid}">
             <label for="prenom">Prénom</label>
-            <input  [(ngModel)]="userToCreate.prenom"  name="prenom" type="text" class="form-control" id="prenom" placeholder="Prénom">
+            <input  formControlName="prenom"  name="prenom" type="text" class="form-control" id="prenom" placeholder="Prénom">
         </div>
     </div>
 
@@ -17,83 +17,82 @@
 
 <div class="row">
   <div class="col-sm-12">
-        <div class="form-group">
+        <div class="form-group"  [ngClass]="{'has-error': !adresse.valid, 'has-success':adresse.valid}">
             <label for="adresse">Adresse</label>
-            <input  [(ngModel)]="userToCreate.adresse" name="adresse" type="text" class="form-control" id="adresse" placeholder="Adresse">
+            <input  formControlName="adresse" name="adresse" type="text" class="form-control" id="adresse" placeholder="Adresse">
         </div>
    </div>
 </div>
 
 <div class="row">
   <div class="col-sm-6">
-        <div class="form-group">
+        <div class="form-group"  [ngClass]="{'has-error': !cdPostal.valid , 'has-success':cdPostal.valid }">
             <label for="cdPostal">Code Postal</label>
-            <input  [(ngModel)]="userToCreate.cdPostal" name="cdPostal" type="text" class="form-control" id="cdPostal" placeholder="Code Postal">
+            <input  formControlName="cdPostal" name="cdPostal" type="text" class="form-control" id="cdPostal" placeholder="Code Postal">
         </div>
    </div>
    <div class="col-sm-6">
-        <div class="form-group">
+        <div class="form-group"  [ngClass]="{'has-error': !ville.valid, 'has-success':ville.valid}">
             <label for="ville">Ville</label>
-            <input  [(ngModel)]="userToCreate.ville"  name="ville" type="text" class="form-control" id="ville" placeholder="Ville">
+            <input  formControlName="ville"  name="ville" type="text" class="form-control" id="ville" placeholder="Ville">
         </div>
     </div>
 </div>
 
 <div class="row">
   <div class="col-sm-4">
-        <div class="form-group has-success has-feedback">
-            <label class="control-label" for="inputGroupSuccess1">Input group with success</label>
+        <div class="form-group has-feedback" [ngClass]="{'has-error': !mail.valid , 'has-success':mail.valid}" >
+            <label class="control-label" for="inputGroupSuccess1">e-mail</label>
             <div class="input-group">
                 <span class="input-group-addon addon-left">@</span>
-                    <input  [(ngModel)]="userToCreate.mail" type="text" name="mail"  class="form-control" id="mail" aria-describedby="inputGroupSuccess1Status">
+                    <input  formControlName="mail" type="text" name="email"  class="form-control" id="email" >
             </div>
-            <i class="ion-checkmark-circled form-control-feedback" aria-hidden="true"></i>
-            <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+       
         </div>
    </div>
 
    <div class="col-sm-4">
-        <div class="form-group">
+        <div class="form-group"  [ngClass]="{'has-error': !tel.valid , 'has-success':tel.valid}">
             <label for="tel">Téléphone</label>
-            <input  [(ngModel)]="userToCreate.tel"  name="tel" type="text" class="form-control" id="tel" placeholder="Téléphone">
+            <input  formControlName="tel"  name="tel" type="text" class="form-control" id="tel" placeholder="Téléphone">
         </div>
     </div>
    <div class="col-sm-4">
-        <div class="form-group">
+        <div class="form-group"  [ngClass]="{'has-error': !siret.valid , 'has-success':siret.valid}">
             <label for="siret">Siret</label>
-            <input  [(ngModel)]="userToCreate.siret"  name="siret" type="text" class="form-control" id="siret" placeholder="Siret">
+            <input  formControlName="siret"  name="siret" type="text" class="form-control" id="siret" placeholder="Siret">
         </div>
     </div>
 </div>
 
 <div class="row">
   <div class="col-sm-6">
-        <div class="form-group">
+        <div class="form-group"  [ngClass]="{'has-error': !login.valid , 'has-success':login.valid }">
             <label for="login">Login</label>
-            <input  [(ngModel)]="userToCreate.login" name="login" type="text" class="form-control" id="login" placeholder="Login">
+            <input  formControlName="login" name="login" type="text" class="form-control" id="login" placeholder="Login">
         </div>
    </div>
    <div class="col-sm-6">
-        <div class="form-group">
+        <div class="form-group"  [ngClass]="{'has-error': !password.valid , 'has-success':password.valid}">
             <label for="password">Password</label>
-            <input  [(ngModel)]="userToCreate.password"  name="password" type="password" class="form-control" id="password" placeholder="Password">
+            <input  formControlName="password"  name="password" type="password" class="form-control" id="password" placeholder="Password">
         </div>
     </div>
 </div>
 <div class="row">
  <div class="col-sm-6">
-        <div class="form-group">
+        <div class="form-group"  [ngClass]="{'has-error': !statut.valid , 'has-success':statut.valid }">
             <label for="statut">Statut</label>
-              <select [(ngModel)]="userToCreate.statut" name="statut"   id="statut" placeholder="Statut" class="form-control" >
+              <select formControlName="statut" name="statut"   id="statut" placeholder="Statut" class="form-control" >
                 <option value="COLAB" selected>Colaboratrice</option>
                 <option value="REMP">remplaçante</option>
             </select>
         </div>
     </div>
  <div class="col-sm-6">
-        <div class="form-group">
+        <div class="form-group"  [ngClass]="{'has-error': !admin.valid, 'has-success': admin.valid}">
             <label for="admin">Administrator</label>
-              <select [(ngModel)]="userToCreate.admin" name="admin"   id="admin" placeholder="Administrator" class="form-control" >
+              <select formControlName="admin" name="admin"   id="admin" placeholder="Administrator" class="form-control" >
                 <option value="true" selected>true</option>
                 <option value="false">false</option>
             </select>
@@ -101,7 +100,7 @@
     </div>
 </div>
   <div class="form-group">
-    <button type="submit" class="btn btn-primary">Créer</button>
+    <button [disabled]="!form.valid" type="submit" class="btn btn-primary">Créer</button>
   </div>
 </form>
 

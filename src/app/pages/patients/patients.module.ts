@@ -21,7 +21,8 @@ import {DataTableModule,SharedModule,ButtonModule} from 'primeng/primeng';
     routing,
     FormsModule,
     DataTableModule,
-    ButtonModule
+    ButtonModule,
+    SharedModule
   ],
   declarations: [
     PatientsComponent,

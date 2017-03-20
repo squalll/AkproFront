@@ -1,0 +1,69 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<div class="row">
+  <div class="col-sm-4">
+        <div class="form-group"  [ngClass]="{'has-error': !nom.valid, 'has-success': nom.valid}">
+            <label for="nom">Nom de la séance</label>
+            <input formControlName="nom" name="nom" type="text" class="form-control" id="nom" placeholder="Nom de la séance">
+        </div>
+   </div>
+   <div class="col-sm-4">
+        <div class="form-group"  [ngClass]="{'has-error': !libelle.valid, 'has-success':libelle.valid}">
+            <label for="libelle">Libelle sur la facture</label>
+            <input  formControlName="libelle"  name="libelle" type="text" class="form-control" id="libelle" placeholder="Libelle sur la facture">
+        </div>
+    </div>
+  <div class="col-sm-4">
+        <div class="form-group"  [ngClass]="{'has-error': !cdTypeSeance.valid, 'has-success':cdTypeSeance.valid}">
+            <label for="cdTypeSeance">Code de la Séance</label>
+            <input  formControlName="cdTypeSeance" name="cdTypeSeance" type="text" class="form-control" id="cdTypeSeance" placeholder="Code de la Séance">
+        </div>
+   </div>
+</div>
+
+
+
+
+
+<div class="row">
+  <div class="col-sm-6">
+        <div class="form-group"  [ngClass]="{'has-error': !prix.valid , 'has-success':prix.valid }">
+            <label for="prix">Prix</label>
+            <input  formControlName="prix" name="prix" type="text" class="form-control" id="prix" placeholder="Prix">
+        </div>
+   </div>
+   <div class="col-sm-6">
+        <div class="form-group"  [ngClass]="{'has-error': !retro.valid , 'has-success':retro.valid}">
+            <label for="retro">Retro</label>
+            <input  formControlName="retro"  name="retro" type="text" class="form-control" id="retro" placeholder="Retro">
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+ <div class="col-sm-6">
+        <div class="form-group"  [ngClass]="{'has-error': !groupe.valid , 'has-success':groupe.valid }">
+            <label for="statut">Groupe</label>
+              <select formControlName="groupe" name="groupe"   id="groupe" placeholder="Groupe" class="form-control" >
+                <option value="CAB" selected>Cabinet</option>
+                <option value="OTHER">Autre</option>
+            </select>
+        </div>
+    </div>
+ <div class="col-sm-6">
+        <div class="form-group"  [ngClass]="{'has-error': !user.valid , 'has-success':user.valid }">
+            <label for="user">Utilisateurs</label>
+              <select formControlName="user" name="user"   id="user" placeholder="Utilisateurs" class="form-control" >
+                <option *ngFor="let user of users" 
+                        [ngValue]="user">
+                     {{user.prenom}}  {{user.nom}} 
+                </option>
+            </select>
+        </div>
+    </div>
+</div>
+  <div class="form-group">
+    <button [disabled]="!form.valid" type="submit" class="btn btn-primary">Créer</button>
+  </div>
+</form>
+

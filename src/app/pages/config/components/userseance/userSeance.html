@@ -1,0 +1,21 @@
+<p-dataTable [value]="seanceTypes" sortField="user.nom" rowGroupMode="subheader" groupField="user.nom" expandableRowGroups="true"
+        [sortableRowGroup]="false">
+    <template pTemplate="rowgroupheader" let-rowData>{{rowData['user']['nom']}}</template>
+    <p-column field="nom" header="Nom"></p-column>
+    <p-column field="libelle" header="libelle"></p-column>
+    <p-column field="prix" header="Prix"></p-column>
+    <p-column field="retro" header="Retro"></p-column>
+    <p-column field="cdEtat" header="Etat"></p-column>
+   <p-column  field="cdEtat" [style]="{'width':'130px'}">
+        <template let-seance="rowData" pTemplate="body" >
+             <div style="text-align: center;"  *ngIf="seance['cdEtat'] == 'ACT'">        
+                 <button type="button" class="btn btn-primary" (click)="updatePatient(seance,'INA')">Désactiver</button>
+            </div>
+            <div style="text-align: center;"  *ngIf="seance['cdEtat'] == 'INA'">        
+                 <button type="button" class="btn btn-primary" (click)="updatePatient(seance,'ACT')">Activer</button>
+            </div>
+        </template>
+
+    </p-column>
+
+</p-dataTable>

@@ -7,25 +7,35 @@ import { NgaModule } from '../../theme/nga.module';
 
 import { ConfigComponent } from './config.component';
 import { CreationUser } from './components/creationuser';
+import { CreationSeanceType } from './components/creationseancetype';
+import { UserSeance } from './components/userseance';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule} from '@angular/forms';
 
 import {  UserService } from '../../_services/index';
+import {  SeanceTypeService } from '../../_services/index';
 
+import {DataTableModule,SharedModule} from 'primeng/primeng';
 
 @NgModule({
   imports: [
     CommonModule,
     NgaModule,
     routing,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    DataTableModule,
+    SharedModule
   ],
   declarations: [
     ConfigComponent,
-    CreationUser
+    CreationUser,
+    CreationSeanceType,
+    UserSeance
   ],
   providers: [
-    UserService
+    UserService,
+    SeanceTypeService
   ]
 })
 export default class ConfigModule {}
