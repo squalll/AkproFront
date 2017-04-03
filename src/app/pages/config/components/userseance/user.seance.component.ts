@@ -18,9 +18,20 @@ export class UserSeance implements OnInit {
 
 
   getSeanceType() {
-     this.seanceTypeService.findAllWithUsers('ACT').subscribe(
+     this.seanceTypeService.findAllWithUsers().subscribe(
                 data => {
                   this.seanceTypes = data;
+                },
+                error => {
+                   console.log(error);
+                });
+    }
+
+
+     updateSeance(seance: SeanceType,cdEtat:string) {
+     this.seanceTypeService.updateCdEtat(seance,cdEtat).subscribe(
+                data => {
+                   this.getSeanceType();
                 },
                 error => {
                    console.log(error);

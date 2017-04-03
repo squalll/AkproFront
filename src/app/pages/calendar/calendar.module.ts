@@ -11,6 +11,11 @@ import {ScheduleModule,DialogModule,InputTextModule,CalendarModule} from 'primen
 
 import { FormsModule } from '@angular/forms';
 
+import {  PatientsService } from '../../_services/index';
+import {  SeanceTypeService } from '../../_services/index';
+import {  SeanceService } from '../../_services/index';
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -27,6 +32,9 @@ import { FormsModule } from '@angular/forms';
     
   ],
   providers: [
+    PatientsService,
+    SeanceTypeService,
+    SeanceService
   ]
 })
 export default class  MyCalendarModule {}

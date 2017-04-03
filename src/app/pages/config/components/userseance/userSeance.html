@@ -9,10 +9,10 @@
    <p-column  field="cdEtat" [style]="{'width':'130px'}">
         <template let-seance="rowData" pTemplate="body" >
              <div style="text-align: center;"  *ngIf="seance['cdEtat'] == 'ACT'">        
-                 <button type="button" class="btn btn-primary" (click)="updatePatient(seance,'INA')">Désactiver</button>
+                 <button type="button" class="btn btn-primary" (click)="updateSeance(seance,'INA')">Désactiver</button>
             </div>
             <div style="text-align: center;"  *ngIf="seance['cdEtat'] == 'INA'">        
-                 <button type="button" class="btn btn-primary" (click)="updatePatient(seance,'ACT')">Activer</button>
+                 <button type="button" class="btn btn-primary" (click)="updateSeance(seance,'ACT')">Activer</button>
             </div>
         </template>
 

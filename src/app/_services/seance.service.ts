@@ -4,15 +4,17 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 import { HttpClient } from '../http.client';
 
-import {  SeanceType } from '../models/seanceType';
+import {  Seance } from '../models/seance';
 
 @Injectable()
-export class SeanceTypeService {
+export class SeanceService {
     constructor(private http: HttpClient) {  }
 
-    create(seanceType: SeanceType) {
+    create(seance: Seance) {
 
-        return this.http.post('http://localhost:8080/api/seanceType/create', JSON.stringify({ seanceType: seanceType }))
+      console.log(seance);
+
+        return this.http.post('http://localhost:8080/api/seance/create', JSON.stringify({ seance: seance }))
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 let user = response.json();
@@ -24,7 +26,7 @@ export class SeanceTypeService {
 
          findAll(cdEtat: string) {
 
-        return this.http.post('http://localhost:8080/api/seanceType/findAll',JSON.stringify({ cdEtat: cdEtat}))
+        return this.http.post('http://localhost:8080/api/seance/findAll',JSON.stringify({ cdEtat: cdEtat}))
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 return response.json();
@@ -36,7 +38,7 @@ export class SeanceTypeService {
 
         findAllWithUsers() {
 
-        return this.http.post('http://localhost:8080/api/seanceType/findAllWithUsers',null)
+        return this.http.post('http://localhost:8080/api/seance/findAllWithUsers',JSON.stringify({ cdEtat: 'ACT'}))
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 return response.json();
@@ -46,15 +48,5 @@ export class SeanceTypeService {
     }
 
 
-            updateCdEtat(seance : SeanceType,cdEtat:string ) {
-
-        return this.http.post('http://localhost:8080/api/seanceType/updateCdEtat',JSON.stringify({ seance: seance,cdEtat :cdEtat}))
-            .map((response: Response) => {
-                // login successful if there's a jwt token in the response
-                return response.json();
-         
-            })
-          ;
-    }
     
 }

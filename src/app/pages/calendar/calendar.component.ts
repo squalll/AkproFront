@@ -1,4 +1,12 @@
 import {Component,OnInit} from '@angular/core';
+import {DatePipe} from '@angular/common';
+
+import {  Patient } from '../../models/patient';
+import {  SeanceType } from '../../models/seanceType';
+import {  Seance } from '../../models/seance';
+import {  PatientsService } from '../../_services/index';
+import {  SeanceTypeService } from '../../_services/index';
+import {  SeanceService } from '../../_services/index';
 
 @Component({
   selector: 'calendar',
@@ -8,18 +16,20 @@ export class CalendarComponent  implements OnInit{
 
   events: any[];  
 
- header: any;
+    header: any;
 
-     event: MyEvent;
+    event: Seance;
+    patients: Patient[];
+    seanceTypes: SeanceType[];
+    
     
     dialogVisible: boolean = false;
     
-    idGen: number = 100;
-  constructor() {}
+  constructor( private patientsService: PatientsService,private seanceTypeService: SeanceTypeService,private seanceService: SeanceService) {}
 
     handleEventClick(e) {
-        this.event = new MyEvent();
-        this.event.title = e.calEvent.title;
+     //   this.event = new Seance(e.calEvent.id,);
+        //this.event.title = e.calEvent.title;
         
         let start = e.calEvent.start;
         let end = e.calEvent.end;
@@ -31,21 +41,19 @@ export class CalendarComponent  implements OnInit{
             end.stripTime();
             this.event.end = end.format();
         }
+        this.event = new Seance(e.calEvent.id,start.format(),end,null,null,null,null,1);
 
-        this.event.id = e.calEvent.id;
-        this.event.start = start.format();
-        this.dialogVisible = true;
     }
 
-     handleDayClick(event) {
-        this.event = new MyEvent();
-        this.event.start = event.date.format();
-        this.dialogVisible = true;
-        
+    handleDayClick(event) {
+
+
+        this.event = new Seance(null,"10:00","11:00",event.date.format(),event.date.format(),null,null,1);
      
+        this.dialogVisible = true;
     }
 
-       saveEvent() {
+    saveEvent() {
         //update
         if(this.event.id) {
             let index: number = this.findEventIndexById(this.event.id);
@@ -55,9 +63,35 @@ export class CalendarComponent  implements OnInit{
         }
         //new
         else {
-            this.event.id = this.idGen;
+            var datePipe = new DatePipe();
+             let start = datePipe.transform(this.event.startTime, 'yyyy-MM-dd HH:mm');
+               let end = datePipe.transform(this.event.endTime, 'yyyy-MM-dd HH:mm');
+            let startDate :Date = new Date( this.event.startTime);
+            this.event.start =  start;
+            this.event.end =    end;
+             this.event.startTime = null; 
+             this.event.endTime = null; 
+
+            console.log(start);
+            
+            console.log( end );
+
+
             this.events.push(this.event);
+
+  
+      
+            this.seanceService.create(this.event) .subscribe(
+                data => {
+                     this. getSeances();
+                },
+                error => {
+                   console.log(error);
+                });
+
             this.event = null;
+
+          
         }
         
         this.dialogVisible = false;
@@ -83,32 +117,44 @@ export class CalendarComponent  implements OnInit{
         return index;
     }
 
+    getPatients() {
+     this.patientsService.findAll('ACT').subscribe(
+                data => {
+                  this.patients = data;
+                },
+                error => {
+                   console.log(error);
+                });
+    }
+
+      getSeanceType() {
+     this.seanceTypeService.findAll('ACT').subscribe(
+                data => {
+                  this.seanceTypes = data;
+                },
+                error => {
+                   console.log(error);
+                });
+    }
+  
+      getSeances() {
+     this.seanceService.findAllWithUsers().subscribe(
+                data => {
+                  this.events = data;
+                },
+                error => {
+                   console.log(error);
+                });
+    }
+
 ngOnInit() {
-        this.events = [
-            {
-                "title": "All Day Event",
-                "start": "2017-02-01"
-            },
-            {
-                "title": "Long Event",
-                "start": "2017-02-07",
-                "end": "2017-02-10"
-            },
-            {
-                "id":"1",
-                "title": "Repeating Event",
-                "start": "2017-02-09T16:00:00"
-            },
-            {
-                "title": "Repeating Event",
-                "start": "2017-02-16T16:00:00"
-            },
-            {
-                "title": "Conference",
-                "start": "2017-02-11",
-                "end": "2017-02-13"
-            }
-        ];
+
+    this.getPatients() ;
+
+    this.getSeanceType() ;
+
+    this. getSeances();
+
 
       this.header = {
         left: 'prev,next today',
@@ -117,12 +163,4 @@ ngOnInit() {
 		};
     }
 
-}
-
-export class MyEvent {
-    id: number;
-    title: string;
-    start: string;
-    end: string;
-    allDay: boolean = true;
 }

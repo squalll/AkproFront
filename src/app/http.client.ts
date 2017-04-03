@@ -44,6 +44,21 @@ export class HttpClient {
         
         }
 
+        addUser(data):String {
+          var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+          var newData = JSON.parse(data);
+          if(newData!= null){
+             newData.currentUser=currentUser;
+          }else{
+            newData = new Object();
+
+              newData.currentUser=currentUser;
+          }
+           console.log(newData);
+
+          return JSON.stringify(newData);
+        }
     
   get(url) {
     let headers = new Headers();
@@ -65,15 +80,16 @@ export class HttpClient {
         //let options = new RequestOptions({ headers: headers });*/
   //  var option = this.setOptions(null);
  //   this.addSecurityHeader(option);
+     data= this.addUser(data);
     return this.authHttp.post(url, data);
   }
 
     login(url, data) {
-    let headers = new Headers();
-     this.createContentTypeHeader(headers);
+      let headers = new Headers();
+      this.createContentTypeHeader(headers);
 
-    return this.http.post(url, data,{
-      headers: headers
-    });
+      return this.http.post(url, data,{
+         headers: headers
+      });
   }
 }
